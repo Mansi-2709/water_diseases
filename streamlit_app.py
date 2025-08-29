@@ -11,5 +11,5 @@ with st.expander('Data'):
   X = df.drop('Diarrheal Cases per 100,000 people',axis=1)
   X
   st.write('**y**')
-  y = df.Diarrheal Cases per 100,000 people
+  y = df[['Diarrheal Cases per 100,000 people']]
   y
