@@ -1,5 +1,10 @@
 import streamlit as st
 
-st.title('🎈 App Name')
+st.title('Water Disease Prediction App')
 
-st.write('Hello world!')
+with st.expander('Data'):
+  st.write('**Raw Data**')
+
+
+with st.expander('Input Data'):
+  
