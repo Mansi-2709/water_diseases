@@ -31,8 +31,7 @@ with st.expander('Input your data'):
   Sanitation_Coverage = st.slider('Sanitation Coverage (% of Population)', 20.0, 99.9, 60.3)
   Bacteria_Count = st.slider('Bacteria Count (CFU/mL)', 0.0, 4998.0, 2488.4)
   Region = st.selectbox('Region', ('North', 'South', 'East', 'West', 'Central'))
-
-data = {'Contaminant Level (ppm)': Contaminant_Level, 
+  data = {'Contaminant Level (ppm)': Contaminant_Level, 
         'Population Density (people per km²)': Population_Density, 
         'Access to Clean Water (% of Population)': Access_to_Clean_Water, 
         'pH Level': pH_Level, 
@@ -47,6 +46,6 @@ data = {'Contaminant Level (ppm)': Contaminant_Level,
         'Country': Country, 
         'Sanitation Coverage (% of Population)': Sanitation_Coverage, 
         'Bacteria Count (CFU/mL)': Bacteria_Count}
-input_df = pd.DataFrame(data, index=[0])
+  input_df = pd.DataFrame(data, index=[0])
 with st.expander('Input features'):
   input_df
