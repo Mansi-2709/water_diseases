@@ -47,3 +47,6 @@ data = {'Contaminant Level (ppm)': Contaminant_Level,
         'Country': Country, 
         'Sanitation Coverage (% of Population)': Sanitation_Coverage, 
         'Bacteria Count (CFU/mL)': Bacteria_Count}
+input_df = pd.DataFrame(data, index=[0])
+with st.expander('Input features'):
+  input_df
