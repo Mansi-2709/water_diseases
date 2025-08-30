@@ -31,3 +31,19 @@ with st.expander('Input your data'):
   Sanitation_Coverage = st.slider('Sanitation Coverage (% of Population)', 20.0, 99.9, 60.3)
   Bacteria_Count = st.slider('Bacteria Count (CFU/mL)', 0.0, 4998.0, 2488.4)
   Region = st.selectbox('Region', ('North', 'South', 'East', 'West', 'Central'))
+
+data = {'Contaminant Level (ppm)': Contaminant_Level, 
+        'Population Density (people per km²)': Population_Density, 
+        'Access to Clean Water (% of Population)': Access_to_Clean_Water, 
+        'pH Level': pH_Level, 
+        'Turbidity (NTU)': Turbidity, 
+        'Rainfall (mm per year)': Rainfall, 
+        'Healthcare Access Index (0-100)': Healthcare_Access_Index, 
+        'Region': Region, 
+        'Dissolved Oxygen (mg/L)': Dissolved_Oxygen, 
+        'Nitrate Level (mg/L)': Nitrate_Level, 
+        'Temperature (°C)': Temperature, 
+        'GDP per Capita (USD)': GDP_per_Capita, 
+        'Country': Country, 
+        'Sanitation Coverage (% of Population)': Sanitation_Coverage, 
+        'Bacteria Count (CFU/mL)': Bacteria_Count}
