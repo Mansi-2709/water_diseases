@@ -3,7 +3,7 @@ import pandas as pd
 import xgboost as xg
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import KFold
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
 
 st.title('Water Disease Prediction App')
 
@@ -65,7 +65,7 @@ with st.expander('Input features'):
             'max_depth':[3,6]
         }
 	cv=KFold(n_splits=5,random_state=None,shuffle=False)
-	grid_search = GridSearchCV(clf, params_grid, cv=cv, scoring='f1_macro', return_train_score=False)
+	grid_search = RandomizedSearchCV(clf, params_grid, cv=cv, scoring='f1_macro', return_train_score=False)
 	grid_search.fit(X,y)
 	input_df=input_disease[:1]
 	y_pred=grid_search.predict(input_df)
