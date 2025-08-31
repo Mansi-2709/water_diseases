@@ -57,7 +57,7 @@ encoder = LabelEncoder()
 input_disease['Country'] = encoder.fit_transform(input_disease['Country'])
 input_disease['Region'] = encoder.fit_transform(input_disease['Region'])
 X=input_disease[1:]
-clf = xg.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=3, objective='reg:squarederror', random_state=42)
+clf = xg.XGBRegressor()
 clf.fit(X,y)
 input_df=input_disease[:1]
 y_pred=clf.predict(input_df)
