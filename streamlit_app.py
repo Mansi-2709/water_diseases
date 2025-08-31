@@ -11,6 +11,7 @@ with st.sidebar:
     default=True,
 	)
 	pg = st.navigation(pages=[dashboard_page])
+	st.sidebar.success("Select a page above ☝️")
 
 with st.expander('Data'):
   st.write('**Raw Data**')
