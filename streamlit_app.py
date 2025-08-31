@@ -68,7 +68,7 @@ with st.expander('Input features'):
 	grid_search = GridSearchCV(clf, params_grid, cv=cv, scoring='f1_macro', return_train_score=False)
 	grid_search.fit(X,y)
 	input_df=input_disease[:1]
+	y_pred=grid_search.predict(input_df)
 
 with st.expander('Predictions'):
-	y_pred=grid_search.predict(input_df)
 	st.write('Diarrheal Cases per 100,000 people for the given input is :', y_pred)
