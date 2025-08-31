@@ -58,17 +58,10 @@ with st.expander('Input features'):
 	input_disease['Country'] = encoder.fit_transform(input_disease['Country'])
 	input_disease['Region'] = encoder.fit_transform(input_disease['Region'])
 	X=input_disease[1:]
-	clf = xg.XGBRegressor(objective='reg:squarederror', random_state=42)
-	params_grid = {
-            'n_estimators': [100,200,500],
-	        'learning_rate':[0.01, 0.05, 0.1, 0.2],
-            'max_depth':[3,6]
-        }
-	cv=KFold(n_splits=5,random_state=None,shuffle=False)
-	grid_search = RandomizedSearchCV(clf, params_grid, cv=cv, scoring='f1_macro', return_train_score=False)
-	grid_search.fit(X,y)
+	clf = xg.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=3, objective='reg:squarederror', random_state=42)
+	clf.fit(X,y)
 	input_df=input_disease[:1]
-	y_pred=grid_search.predict(input_df)
+	y_pred=clf.predict(input_df)
 
 with st.expander('Predictions'):
 	st.write('Diarrheal Cases per 100,000 people for the given input is :', y_pred)
