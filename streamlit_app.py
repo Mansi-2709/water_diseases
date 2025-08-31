@@ -4,14 +4,6 @@ import xgboost as xg
 from sklearn.preprocessing import LabelEncoder
 
 st.title('Water Disease Prediction App')
-with st.sidebar:
-	dashboard_page = st.Page(
-    "pages/Dashboard.py",
-    title="Dashboard",
-    default=True,
-	)
-	pg = st.navigation(pages=[dashboard_page])
-	st.sidebar.success("Select a page above ☝️")
 
 with st.expander('Data'):
   st.write('**Raw Data**')
@@ -71,5 +63,3 @@ with st.expander('Input features'):
 
 with st.expander('Predictions'):
 	st.write('Diarrheal Cases per 100,000 people for the given input is :', y_pred)
-
-pg.run()
