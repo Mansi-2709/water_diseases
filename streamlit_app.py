@@ -4,12 +4,13 @@ import xgboost as xg
 from sklearn.preprocessing import LabelEncoder
 
 st.title('Water Disease Prediction App')
-dashboard_page = st.Page(
+with st.sidebar:
+	dashboard_page = st.Page(
     "pages/Dashboard.py",
     title="Dashboard",
     default=True,
-)
-pg = st.navigation(pages=[dashboard_page])
+	)
+	pg = st.navigation(pages=[dashboard_page])
 
 with st.expander('Data'):
   st.write('**Raw Data**')
