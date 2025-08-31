@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import xgboost as xg
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import KFold
-from sklearn.model_selection import RandomizedSearchCV
 
 st.title('Water Disease Prediction App')
 
