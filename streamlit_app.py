@@ -54,8 +54,6 @@ with st.expander('Input your data'):
   input_disease = pd.concat([input_df,X], axis=0)
 with st.expander('Input features'):
 	input_df
-
-with st.expander('Predictions'):
 	encoder = LabelEncoder()
 	input_disease['Country'] = encoder.fit_transform(input_disease['Country'])
 	input_disease['Region'] = encoder.fit_transform(input_disease['Region'])
@@ -70,5 +68,7 @@ with st.expander('Predictions'):
 	grid_search = GridSearchCV(clf, params_grid, cv=cv, scoring='f1_macro', return_train_score=False)
 	grid_search.fit(X,y)
 	input_df=input_disease[:1]
+
+with st.expander('Predictions'):
 	y_pred=grid_search.predict(input_df)
 	st.write('Diarrheal Cases per 100,000 people for the given input is :', y_pred)
