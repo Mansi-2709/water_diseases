@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import xgboost as xg
+from sklearn.preprocessing import LabelEncoder
 
 st.title('Water Disease Prediction App')
 
@@ -47,5 +49,18 @@ with st.expander('Input your data'):
         'Sanitation Coverage (% of Population)': Sanitation_Coverage, 
         'Bacteria Count (CFU/mL)': Bacteria_Count}
   input_df = pd.DataFrame(data, index=[0])
+  input_disease = pd.concat([X,input_df], axis=0)
 with st.expander('Input features'):
   input_df
+
+encoder = LabelEncoder()
+input_disease['Country'] = encoder.fit_transform(input_disease['Country'])
+input_disease['Region'] = encoder.fit_transform(input_disease['Region'])
+X=input_disease.iloc[:-1]
+clf = xg.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=3, objective='reg:squarederror', random_state=42)
+clf.fit(X,y)
+input_df=input_disease.iloc[-1]
+y_pred=clf.predict(input_df)
+
+with st.expander('Predictions'):
+  st.write('Diarrheal Cases per 100,000 people for the given input is :', y_pred)
