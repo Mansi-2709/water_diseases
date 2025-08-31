@@ -5,8 +5,6 @@ from sklearn.preprocessing import LabelEncoder
 
 st.title('Water Disease Prediction App')
 
-st.sidebar.success("Select a page above.")
-
 with st.expander('Data'):
   st.write('**Raw Data**')
   df = pd.read_csv('https://raw.githubusercontent.com/Mansi-2709/water_diseases/refs/heads/master/my_dataframe.csv')
