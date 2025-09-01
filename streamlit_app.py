@@ -4,7 +4,7 @@ import xgboost as xg
 from sklearn.preprocessing import LabelEncoder
 
 st.title('Water Disease Prediction App')
-
+st.set_page_config(page_title="Water Disease App", page_icon=":droplet:",layout="wide")
 with st.expander('Data'):
   st.write('**Raw Data**')
   df = pd.read_csv('https://raw.githubusercontent.com/Mansi-2709/water_diseases/refs/heads/master/my_dataframe.csv')
