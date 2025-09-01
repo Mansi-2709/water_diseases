@@ -3,7 +3,10 @@ import pandas as pd
 import xgboost as xg
 from sklearn.preprocessing import LabelEncoder
 
-page_title="Prediction App"
+st.set_page_config(
+    page_title="Prediction App",
+    layout="centered", 
+)
 st.title('Water Disease Prediction App')
 
 with st.expander('Data'):
