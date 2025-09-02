@@ -64,7 +64,7 @@ if not filtered_df.empty:
 
     # Example Plot 2: Cases by Country
     if not filtered_df.empty:
-        fig2 = px.line(filtered_df, x="Year", y="Diarrheal Cases per 100,000 people", color='Country')
+        fig2 = px.scatter(df, x="Year", y="Diarrheal Cases per 100,000 people", color="Country", hover_data=['Region'])
         st.plotly_chart(fig2, use_container_width=True)
 else:
     st.warning("No data available for the selected filters.")
