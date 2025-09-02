@@ -68,7 +68,7 @@ if not filtered_df.empty:
             filtered_df.groupby("Country", as_index=False)["Diarrheal Cases per 100,000 people"].sum(),
             x="Country",
             y="Diarrheal Cases per 100,000 people",
-            color="Year",
+            color="Country",
             title="Total Cases by Country"
         )
         st.plotly_chart(fig2, use_container_width=True)
