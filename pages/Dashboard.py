@@ -63,14 +63,8 @@ if not filtered_df.empty:
     st.plotly_chart(fig1, use_container_width=True)
 
     # Example Plot 2: Cases by Country
-    if "Diarrheal Cases per 100,000 people" in filtered_df.columns:
-        fig2 = px.bar(
-            filtered_df.groupby("Country", as_index=False)["Diarrheal Cases per 100,000 people"].sum(),
-            x="Country",
-            y="Diarrheal Cases per 100,000 people",
-            color="Country",
-            title="Total Cases by Country"
-        )
+    if not filtered_df.empty:
+        fig2 = px.line(filtered_df, x="Year", y="Diarrheal Cases per 100,000 people", color='Country')
         st.plotly_chart(fig2, use_container_width=True)
 else:
     st.warning("No data available for the selected filters.")
