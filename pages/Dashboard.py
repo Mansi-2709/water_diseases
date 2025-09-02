@@ -76,5 +76,9 @@ if not filtered_df.empty:
     if not filtered_df.empty:
         fig4 = px.scatter(filtered_df, x="GDP per Capita (USD)", y="Cholera Cases per 100,000 people", size="Population Density (people per km²)", color="Country", log_x=True, size_max=60)
         st.plotly_chart(fig4, use_container_width=True)
+
+    if not filtered_df.empty:
+        fig5 = px.line(filtered_df, x="Contaminant Level (ppm)", y="Typhoid Cases per 100,000 people", color='Year')
+        st.plotly_chart(fig5, use_container_width=True)
 else:
     st.warning("No data available for the selected filters.")
