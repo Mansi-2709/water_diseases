@@ -1,6 +1,6 @@
 import streamlit as st
-import plotly.express as px
 import pandas as pd
+import plotly.express as px
 import os
 import warnings
 warnings.filterwarnings('ignore')
@@ -8,8 +8,69 @@ warnings.filterwarnings('ignore')
 st.set_page_config(page_title="Water Disease Dashboard", page_icon=":droplet:",layout="wide")
 df = pd.read_csv('https://raw.githubusercontent.com/Mansi-2709/water_diseases/refs/heads/master/water_pollution_disease.csv')
 
-st.sidebar.header("Choose your filter: ")
-region = st.sidebar.selectbox("Pick your Region", df["Region"].unique())
-country = st.sidebar.selectbox("Pick your Country", df["Country"].unique())
-source = st.sidebar.selectbox("Pick your Water Source", df["Water Source Type"].unique())
-treatment = st.sidebar.selectbox("Pick your Water Treatment", df["Water Treatment Method"].unique())
+# Sidebar filters
+st.sidebar.header("Filters")
+
+# Country filter
+countries = st.sidebar.multiselect(
+    "Select Country",
+    options=df["Country"].dropna().unique(),
+    default=df["Country"].dropna().unique()
+)
+
+# Region filter
+regions = st.sidebar.multiselect(
+    "Select Region",
+    options=df["Region"].dropna().unique(),
+    default=df["Region"].dropna().unique()
+)
+
+# Water source filter
+sources = st.sidebar.multiselect(
+    "Select Water Source Type",
+    options=df["Water Source Type"].dropna().unique(),
+    default=df["Water Source Type"].dropna().unique()
+)
+
+# Water treatment filter
+treatments = st.sidebar.multiselect(
+    "Select Water Treatment",
+    options=df["Water Treatment Method"].dropna().unique(),
+    default=df["Water Treatment Method"].dropna().unique()
+)
+
+# Apply filters
+filtered_df = df[
+    (df["Country"].isin(countries)) &
+    (df["Region"].isin(regions)) &
+    (df["Water Source Type"].isin(sources)) &
+    (df["Water Treatment Method"].isin(treatments))
+]
+
+st.title("🌍 Water Pollution & Disease Dashboard")
+
+st.markdown("Use the filters in the sidebar to explore the data interactively.")
+
+# Example Plot 1: Distribution of water sources
+if not filtered_df.empty:
+    fig1 = px.histogram(
+        filtered_df,
+        x="Water Source Type",
+        color="Water Treatment Method",
+        barmode="group",
+        title="Distribution of Water Sources by Treatment"
+    )
+    st.plotly_chart(fig1, use_container_width=True)
+
+    # Example Plot 2: Cases by Country
+    if "cases" in filtered_df.columns:
+        fig2 = px.bar(
+            filtered_df.groupby("Country", as_index=False)["Diarrheal Cases per 100,000 people"].sum(),
+            x="Country",
+            y="Diarrheal Cases per 100,000 people",
+            color="Year",
+            title="Total Cases by Country"
+        )
+        st.plotly_chart(fig2, use_container_width=True)
+else:
+    st.warning("No data available for the selected filters.")
