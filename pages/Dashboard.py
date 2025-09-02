@@ -76,8 +76,8 @@ if not filtered_df.empty:
     st.plotly_chart(fig4, use_container_width=True)
 
 if not filtered_df.empty:
-    year = st.selectbox("Select Year", df["Year"].dropna().unique())
-    fig5 = px.line(filtered_df.query("Year=='year'"), x="Contaminant Level (ppm)", y="Typhoid Cases per 100,000 people", color='Year', title="Typhoid Cases compared to Contamination Level")
+    my_year = st.selectbox("Select Year", df["Year"].dropna().unique())
+    fig5 = px.line(filtered_df.query("Year=='my_year'"), x="Contaminant Level (ppm)", y="Typhoid Cases per 100,000 people", color='Year', title="Typhoid Cases compared to Contamination Level")
     st.plotly_chart(fig5, use_container_width=True)
 else:
     st.warning("No data available for the selected filters.")
