@@ -63,7 +63,7 @@ if not filtered_df.empty:
     st.plotly_chart(fig1, use_container_width=True)
 
     # Example Plot 2: Cases by Country
-    if "cases" in filtered_df.columns:
+    if "Year" in filtered_df.columns:
         fig2 = px.bar(
             filtered_df.groupby("Country", as_index=False)["Diarrheal Cases per 100,000 people"].sum(),
             x="Country",
