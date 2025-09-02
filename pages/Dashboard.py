@@ -53,6 +53,7 @@ st.title("🌍 Water Pollution & Disease Dashboard")
 st.markdown("Use the filters in the sidebar to explore the data interactively.")
 
 # Example Plot 1: Distribution of water sources
+col1, col2 = st.columns((2))
 with col1:
     if not filtered_df.empty:
         fig1 = px.histogram(filtered_df, x="Water Source Type", color="Water Treatment Method", barmode="group", title="Distribution of Water Sources by Treatment")
