@@ -70,5 +70,9 @@ if not filtered_df.empty:
     if not filtered_df.empty:
         fig3 = px.sunburst(filtered_df, path=['Region', 'Country'], values='Infant Mortality Rate (per 1,000 live births)')
         st.plotly_chart(fig3, use_container_width=True)
+
+    if not filtered_df.empty:
+        fig4 = px.scatter(filtered_df, x="GDP per Capita (USD)", y="Cholera Cases per 100,000 people", size="Population Density (people per km²)", color="Country", log_x=True, size_max=60)
+        st.plotly_chart(fig4, use_container_width=True)
 else:
     st.warning("No data available for the selected filters.")
