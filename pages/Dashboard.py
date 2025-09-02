@@ -66,5 +66,9 @@ if not filtered_df.empty:
     if not filtered_df.empty:
         fig2 = px.scatter(filtered_df, x="Year", y="Diarrheal Cases per 100,000 people", color="Country", hover_data=['Region'])
         st.plotly_chart(fig2, use_container_width=True)
+
+    if not filtered_df.empty:
+        fig3 = px.sunburst(filtered_df, path=['Region', 'Country'], values='Infant Mortality Rate (per 1,000 live births)')
+        st.plotly_chart(fig3, use_container_width=True)
 else:
     st.warning("No data available for the selected filters.")
