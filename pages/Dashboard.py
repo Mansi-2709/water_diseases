@@ -53,7 +53,8 @@ st.title("🌍 Water Pollution & Disease Dashboard")
 st.markdown("Use the filters in the sidebar to explore the data interactively.")
 
 # Example Plot 1: Distribution of water sources
-if not filtered_df.empty:
+with col1:
+    if not filtered_df.empty:
     fig1 = px.histogram(
         filtered_df,
         x="Water Source Type",
@@ -63,22 +64,26 @@ if not filtered_df.empty:
     )
     st.plotly_chart(fig1, use_container_width=True)
 
-    # Example Plot 2: Cases by Country
-    if not filtered_df.empty:
-        fig2 = px.scatter(filtered_df, x="Year", y="Diarrheal Cases per 100,000 people", color="Country", hover_data=['Region'])
-        st.plotly_chart(fig2, use_container_width=True)
-
+with col2:
     if not filtered_df.empty:
         fig3 = px.sunburst(filtered_df, path=['Region', 'Country'], values='Infant Mortality Rate (per 1,000 live births)', color_continuous_scale='RdBu',
-                  color_continuous_midpoint=np.average(filtered_df['Infant Mortality Rate (per 1,000 live births)'], weights=filtered_df['Infant Mortality Rate (per 1,000 live births)']))
+                  color_continuous_midpoint=np.average(filtered_df['Infant Mortality Rate (per 1,000 live births)'], weights=filtered_df['Infant Mortality Rate (per 1,000 live births)']), title="Infant Mortality Rate of Each Country")
         st.plotly_chart(fig3, use_container_width=True)
+        
+if not filtered_df.empty:
+    fig2 = px.scatter(filtered_df, x="Year", y="Diarrheal Cases per 100,000 people", color="Country", hover_data=['Region'], title= "Diarrheal Cases per Year")
+    st.plotly_chart(fig2, use_container_width=True)
+
+    
 
     if not filtered_df.empty:
-        fig4 = px.scatter(filtered_df, x="GDP per Capita (USD)", y="Cholera Cases per 100,000 people", size="Population Density (people per km²)", color="Country", log_x=True, size_max=60)
+        year = st.sidebar.selectbox("Select Year", options=df["Year"].dropna().unique(), default=df["Year"].dropna().unique())
+        fig4 = px.scatter(filtered_df.query("Year=='year'"), x="GDP per Capita (USD)", y="Cholera Cases per 100,000 people", size="Population Density (people per km²)", color="Country", log_x=True, size_max=60, title="Cholera Cases according to GDP")
         st.plotly_chart(fig4, use_container_width=True)
 
     if not filtered_df.empty:
-        fig5 = px.line(filtered_df, x="Contaminant Level (ppm)", y="Typhoid Cases per 100,000 people", color='Year')
+         year = st.sidebar.selectbox("Select Year", options=df["Year"].dropna().unique(), default=df["Year"].dropna().unique())
+        fig5 = px.line(filtered_df.query("Year=='year'"), x="Contaminant Level (ppm)", y="Typhoid Cases per 100,000 people", color='Year', title="Typhoid Cases compared to Contamination Level")
         st.plotly_chart(fig5, use_container_width=True)
 else:
     st.warning("No data available for the selected filters.")
