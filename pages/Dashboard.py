@@ -68,7 +68,7 @@ if not filtered_df.empty:
         st.plotly_chart(fig2, use_container_width=True)
 
     if not filtered_df.empty:
-        fig3 = px.sunburst(filtered_df, path=['Region', 'Country'], values='Infant Mortality Rate (per 1,000 live births)')
+        fig3 = px.sunburst(filtered_df, path=['Region', 'Country'], values='Infant Mortality Rate (per 1,000 live births)', weights=filtered_df['Infant Mortality Rate (per 1,000 live births)'])
         st.plotly_chart(fig3, use_container_width=True)
 
     if not filtered_df.empty:
