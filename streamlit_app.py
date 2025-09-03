@@ -3,7 +3,7 @@ import pandas as pd
 import xgboost as xg
 from sklearn.preprocessing import LabelEncoder
 
-st.title('Water Disease Prediction App')
+st.title('🌍 Water Disease Prediction App')
 st.set_page_config(page_title="Water Disease App", page_icon=":droplet:",layout="wide")
 with st.expander('Data'):
   st.write('**Raw Data**')
